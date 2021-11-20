@@ -88,7 +88,7 @@ module.exports = {
 
 [[example commit]](https://github.com/bootstrap-vue/bootstrap-vue/commit/ff82fd173c7b7d3939ee479e50112f689cf31a8f)
 
-3. Install `vue-test-utils-compat`. Please take a note that your test environment might reset modules between files (jest do this), so make sure to do this in the proper place (we're using `setupFilesAfterEnv` in jest):
+3. Install `vue-test-utils-compat`. Please take a note that your test environment might reset modules between files (`jest` do this), so make sure to do this in the proper place (we're using `setupFilesAfterEnv` in jest):
 
 ```js
   const compatH = new Vue({}).$createElement
@@ -101,7 +101,7 @@ module.exports = {
     * snapshots (they might differ between Vue 2 and Vue 3)
 
 5. At this point, you (theoretically) have a green suite and can start working on upgrading your code to Vue 3
-6. Switch `fullCompatConfig` from step 3 with the detailed configuration of compat flags. You can copy-paste the full list of flags below or take a look at the source code to figure all flags:
+6. Replace `fullCompatConfig` from step 3 with the detailed list of compat flags. You can copy-paste the full list of flags below or take a look at the source code to figure all flags:
 ```js
 const compatConfig = {
   EXPORT_CREATE_LOCAL_VUE: true,
@@ -128,8 +128,8 @@ const compatConfig = {
   WRAPPER_FIND_ALL: true,
 }
 ```
-6. Turn off one compatibility flag. Fix failing tests. Repeat.
-7. As soon as you turn off the last compatibility flag - throw away and uninstall this package. You are awesome!
+6. 🔁 Turn off one compatibility flag. Fix failing tests. Repeat.
+7. As soon as you turn off the last compatibility flag - throw away and uninstall this package. You are awesome! 🎉
 
 ## 🌐 Global API
 
@@ -137,7 +137,7 @@ const compatConfig = {
    * `VueTestUtilsModule` - module, which will be patched
    * `compatConfig: Record<string, boolean>` - list of compatibility flags
    * `vueH` - function which will be used to create Vue VNodes. Required only if `MOUNT_ARGS_SCOPED_SLOTS_THIS` compatibility flag is used, could be omitted otherwise
-* `compatFlags` - object with all available compatibility
+* `compatFlags` - object with all available compatibility flags
 * `fullCompatConfig` - config object with all compatibility flags enabled
 
 ## 🏁 Compatibility flags
