@@ -1,4 +1,4 @@
-# vue-test-utils-compat
+# vue-test-utils-compat [![npm badge](https://img.shields.io/npm/v/vue-test-utils-compat)](https://npmjs.com/vue-test-utils-compat)
 
 Upgrade your Vue components first, deal with tests later
 
@@ -33,6 +33,11 @@ This package provides a compatibility layer, which allows you to run old v1 test
 * ⚠️ [Known issues](#known-issues)
 
 ## ⏩ Quickstart
+
+```bash
+npm install --save-dev vue-test-utils-compat
+```
+
 
 **Vue 3**:
 ```js
