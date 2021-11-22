@@ -1,6 +1,6 @@
 {
   "name": "vue-test-utils-compat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compat layer for @vue/test-utils@2.x",
   "main": "src/index.js",
   "scripts": {

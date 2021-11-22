@@ -1,5 +1,6 @@
 import { install as installWrapperAttributesCompat } from "./compats/wrapper-attributes.js";
 import { install as installWrapperFindAllCompat } from "./compats/wrapper-find-all.js";
+import { install as installWrapperFindCompat } from "./compats/wrapper-find.js";
 import { createLocalVue } from "./utils/create-local-vue.js";
 import { normalizeMountArgs } from "./utils/normalize-mount-args.js";
 
@@ -34,6 +35,7 @@ export const compatFlags = Object.freeze({
   WRAPPER_DESTROY: "WRAPPER_DESTROY",
   WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED: "WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED",
   WRAPPER_FIND_ALL: "WRAPPER_FIND_ALL",
+  WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS: "WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS",
 });
 
 export const fullCompatConfig = Object.freeze({
@@ -95,8 +97,12 @@ export function installCompat(VTU, compatConfig, vueH = null) {
     VTU.disableAutoDestroy = VTU.disableAutoUnmount;
   }
 
-  if (compatConfig.WRAPPER_FIND_ALL) {
+  if (compatConfig.WRAPPER_FIND_ALL || compatConfig.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS) {
     installWrapperFindAllCompat(VTU, compatConfig);
+  }
+
+  if (compatConfig.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS) {
+    installWrapperFindCompat(VTU, compatConfig);
   }
 
   if (compatConfig.WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED) {
@@ -121,18 +127,4 @@ export function installCompat(VTU, compatConfig, vueH = null) {
   if (compatConfig.WRAPPER_ATTRIBUTES_VALUE || compatConfig.WRAPPER_ATTRIBUTES_DISABLED) {
     installWrapperAttributesCompat(VTU, compatConfig);
   }
-
-  // VTU.config.plugins.DOMWrapper.install((wrapper) => {
-  //   const { find } = wrapper;
-
-  //   return {
-  //     find(selector) {
-  //       if (wrapper.element.matches(selector)) {
-  //         return wrapper;
-  //       }
-
-  //       return find.call(wrapper, selector);
-  //     },
-  //   };
-  // });
 }
