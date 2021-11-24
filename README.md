@@ -44,7 +44,7 @@ npm install --save-dev vue-test-utils-compat
 const VueTestUtils = require('vue@/test-utils');
 const { h } = require('vue');
 const {
-  installCompat as installVTUCompat,
+  installCompat: installVTUCompat,
   fullCompatConfig
 } = require('vue-test-utils-compat');
 
