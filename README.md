@@ -55,6 +55,10 @@ installVTUCompat(VueTestUtils, fullCompatConfig, h)
 ```js
 const VueTestUtils = require('vue@/test-utils');
 const Vue = require('vue');
+const {
+  installCompat: installVTUCompat,
+  fullCompatConfig
+} = require('vue-test-utils-compat');
 let compatH;
 Vue.createApp({
   compatConfig: {
