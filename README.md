@@ -65,7 +65,7 @@ Vue.createApp({
     compatH = h
   }
 }).mount(document.createElement('div'))
-installVTUCompat(VTU, fullCompatConfig, compatH)
+installVTUCompat(VueTestUtils, fullCompatConfig, compatH)
 ```
 
 ## ✔️ Upgrade workflow
