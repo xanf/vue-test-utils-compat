@@ -32,6 +32,7 @@ This package provides a compatibility layer, which allows you to run old v1 test
   - [WRAPPER_ATTRIBUTES_VALUE](#wrapper_attributes_value)
   - [WRAPPER_DESTROY](#wrapper_destroy)
   - [WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED](#wrapper_do_not_include_native_events_in_emitted)
+  - [WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED](#wrapper_do_not_include_hook_events_in_emitted-added-in-v003)
   - [WRAPPER_FIND_ALL](#wrapper_find_all)
 - 🚧 [Work in progress](#-work-in-progress)
 - ⚠️ [Known issues](#known-issues)
@@ -266,6 +267,12 @@ Enables `wrapper.destroy` calls and `enableAutoDestroy` calls
 Makes sure that native events will not be captured in `.emitted()`
 
 ➡️ Migration strategy: rewrite your event-related assertions to take into account that native events are also captured, or (preferred) use [emits](https://v3.vuejs.org/guide/migration/emits-option.html#overview) option on your components
+
+### WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED (added in v0.0.3)
+
+Makes sure that `hook:` events (which happen when using `@vue/compat`) will not be captured in `.emitted()`
+
+➡️ Migration strategy: rewrite your event-related assertions to take into account that such events are also captured, or just upgrade to Vue 3 build without compat
 
 ### WRAPPER_FIND_ALL
 

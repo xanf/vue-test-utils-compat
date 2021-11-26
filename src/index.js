@@ -36,6 +36,7 @@ export const compatFlags = Object.freeze({
   WRAPPER_ATTRIBUTES_VALUE: "WRAPPER_ATTRIBUTES_VALUE",
   WRAPPER_DESTROY: "WRAPPER_DESTROY",
   WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED: "WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED",
+  WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED: "WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED",
   WRAPPER_FIND_ALL: "WRAPPER_FIND_ALL",
   WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS: "WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS",
 });
@@ -110,6 +111,27 @@ export function installCompat(VTU, compatConfig, vueH = null) {
   if (compatConfig.WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED) {
     // eslint-disable-next-line no-param-reassign
     VTU.VueWrapper.prototype.attachNativeEventListener = () => {};
+  }
+
+  if (compatConfig.WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED) {
+    VTU.config.plugins.VueWrapper.install((wrapper) => {
+      const { emitted } = wrapper;
+      return {
+        emitted(event) {
+          const result = emitted.call(this, event);
+          if (arguments.length === 1) {
+            return result;
+          }
+
+          Object.keys(result).forEach((k) => {
+            if (k.startsWith("hook:")) {
+              delete result[k];
+            }
+          });
+          return result;
+        },
+      };
+    });
   }
 
   if (needsNormalization(compatConfig)) {
