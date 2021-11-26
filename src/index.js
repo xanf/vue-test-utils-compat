@@ -39,6 +39,7 @@ export const compatFlags = Object.freeze({
   WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED: "WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED",
   WRAPPER_FIND_ALL: "WRAPPER_FIND_ALL",
   WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS: "WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS",
+  WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM: "WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM",
 });
 
 export const fullCompatConfig = Object.freeze({
@@ -104,7 +105,10 @@ export function installCompat(VTU, compatConfig, vueH = null) {
     installWrapperFindAllCompat(VTU, compatConfig);
   }
 
-  if (compatConfig.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS) {
+  if (
+    compatConfig.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS ||
+    compatConfig.WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM
+  ) {
     installWrapperFindCompat(VTU, compatConfig);
   }
 

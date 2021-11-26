@@ -21,6 +21,18 @@ export function install(VTU, config) {
           }
           return result;
         },
+        findComponent(selector) {
+          const result = findComponent.call(wrapper, selector);
+          if (
+            !result.exists() &&
+            selector.ref &&
+            config.WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM &&
+            wrapper.vm.$refs?.[selector.ref]
+          ) {
+            return new VTU.DOMWrapper(wrapper.vm.$refs?.[selector.ref]);
+          }
+          return result;
+        },
       };
     })
   );

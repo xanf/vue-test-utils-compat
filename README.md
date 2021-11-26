@@ -34,7 +34,7 @@ This package provides a compatibility layer, which allows you to run old v1 test
   - [WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED](#wrapper_do_not_include_native_events_in_emitted)
   - [WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED](#wrapper_do_not_include_hook_events_in_emitted-added-in-v003)
   - [WRAPPER_FIND_ALL](#wrapper_find_all)
-- 🚧 [Work in progress](#-work-in-progress)
+  - [WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM](#wrapper_find_component_by_ref_returns_dom-added-in-v003)
 - ⚠️ [Known issues](#known-issues)
 
 ## ⏩ Quickstart
@@ -286,7 +286,12 @@ Implements old behavior of `.find` / `.findAll` when results will be Vue compone
 
 ➡️ Migration strategy: replace `.find` with `.findComponent` and `.findAll` with `.findAllComponents` where appropriate. Please take a note that if your tests rely on having a mixed array of DOM/Vue wrappers - you need to rewrite them
 
-## 🚧 Work in progress
+### WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM (added in v0.0.3)
+
+Implements old behavior when using `.findComponent` with `ref` will return DOM wrapper if ref is pointing to one.
+
+➡️ Migration strategy: replace `.findComponent` with `.find` by ref (when https://github.com/vuejs/vue-test-utils-next/pull/1110 will be merged)
+
 
 These compat rules are a work in progress and will be included soon
 
