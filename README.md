@@ -37,6 +37,8 @@ This package provides a compatibility layer, which allows you to run old v1 test
   - [WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS](#wrapper_find_by_css_selector_returns_components-added-in-v002)
   - [WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM](#wrapper_find_component_by_ref_returns_dom-added-in-v003)
   - [WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE](#wrapper_set_value_does_not_trigger_change-added-in-v003)
+  - [WRAPPER_VUE_SET_VALUE_USES_DOM](#wrapper_vue_set_value_uses_dom-added-in-v003)
+
 - ⚠️ [Known issues](#known-issues)
 
 ## ⏩ Quickstart
@@ -300,7 +302,11 @@ Implements old behavior when using `.trigger` on DOM Wrapper did not trigger `ch
 
 ➡️ Migration strategy: rewrite relevant tests
 
-These compat rules are a work in progress and will be included soon
+### WRAPPER_VUE_SET_VALUE_USES_DOM (added in v0.0.3)
+
+Implements old VTU v1 behavior when using `.setValue` on Vue component actually used same logic, as setting value on DOM node (checking element type of Vue component, etc.)
+
+➡️ Migration strategy: fix your components to use new `setValue` (which respects `v-model`) or rewrite relevant tests
 
 ## Known issues
 

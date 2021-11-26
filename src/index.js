@@ -41,6 +41,7 @@ export const compatFlags = Object.freeze({
   WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS: "WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS",
   WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM: "WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM",
   WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE: "WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE",
+  WRAPPER_VUE_SET_VALUE_USES_DOM: "WRAPPER_VUE_SET_VALUE_USES_DOM",
 });
 
 export const fullCompatConfig = Object.freeze({
@@ -156,6 +157,15 @@ export function installCompat(VTU, compatConfig, vueH = null) {
   if (compatConfig.WRAPPER_ATTRIBUTES_VALUE || compatConfig.WRAPPER_ATTRIBUTES_DISABLED) {
     installWrapperAttributesCompat(VTU, compatConfig);
   }
+
+  if (compatConfig.WRAPPER_VUE_SET_VALUE_USES_DOM) {
+    VTU.config.plugins.VueWrapper.install((wrapper) => ({
+      setValue(value) {
+        return new VTU.DOMWrapper(wrapper.element).setValue(value);
+      },
+    }));
+  }
+
   if (compatConfig.WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE) {
     let blockTriggerringChange = false;
     VTU.config.plugins.DOMWrapper.install((wrapper) => {
