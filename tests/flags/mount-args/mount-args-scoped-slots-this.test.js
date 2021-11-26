@@ -17,6 +17,11 @@ describeOption(compatFlags.MOUNT_ARGS_SCOPED_SLOTS_THIS, () => {
   let wrapper;
   const mountComponent = () => {
     wrapper = VTU.mount(FakeComponent, {
+      global: {
+        config: {
+          warnHandler: () => {},
+        },
+      },
       slots: {
         default: "<div>default</div>",
       },
