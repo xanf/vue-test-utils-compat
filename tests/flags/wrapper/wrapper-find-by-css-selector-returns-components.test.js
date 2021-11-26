@@ -50,17 +50,13 @@ describeOption(compatFlags.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS, () =
 
   describe("when disabled", () => {
     it("find/findAll returns components", () => {
-      installCompat(VTU, { [compatFlags.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS]: true });
+      installCompat(VTU, { [compatFlags.WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS]: false });
       wrapper = VTU.mount(FakeComponent);
       results = wrapper.findAll(".foo");
       result = wrapper.find(".foo");
 
       expect(results).toHaveLength(4);
-      expect(results[0]).toBeInstanceOf(VTU.VueWrapper);
-      expect(results[1]).toBeInstanceOf(VTU.DOMWrapper);
-      expect(results[2]).toBeInstanceOf(VTU.DOMWrapper);
-      expect(results[3]).toBeInstanceOf(VTU.VueWrapper);
-      expect(result).toBeInstanceOf(VTU.VueWrapper);
+      expect(results.every((x) => x instanceof VTU.DOMWrapper)).toBe(true);
     });
   });
 });

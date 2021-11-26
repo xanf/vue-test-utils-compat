@@ -34,6 +34,7 @@ This package provides a compatibility layer, which allows you to run old v1 test
   - [WRAPPER_DO_NOT_INCLUDE_NATIVE_EVENTS_IN_EMITTED](#wrapper_do_not_include_native_events_in_emitted)
   - [WRAPPER_DO_NOT_INCLUDE_HOOK_EVENTS_IN_EMITTED](#wrapper_do_not_include_hook_events_in_emitted-added-in-v003)
   - [WRAPPER_FIND_ALL](#wrapper_find_all)
+  - [WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS](#wrapper_find_by_css_selector_returns_components-added-in-v002)
   - [WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM](#wrapper_find_component_by_ref_returns_dom-added-in-v003)
 - ⚠️ [Known issues](#known-issues)
 
