@@ -36,6 +36,7 @@ This package provides a compatibility layer, which allows you to run old v1 test
   - [WRAPPER_FIND_ALL](#wrapper_find_all)
   - [WRAPPER_FIND_BY_CSS_SELECTOR_RETURNS_COMPONENTS](#wrapper_find_by_css_selector_returns_components-added-in-v002)
   - [WRAPPER_FIND_COMPONENT_BY_REF_RETURNS_DOM](#wrapper_find_component_by_ref_returns_dom-added-in-v003)
+  - [WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE](#wrapper_set_value_does_not_trigger_change-added-in-v003)
 - ⚠️ [Known issues](#known-issues)
 
 ## ⏩ Quickstart
@@ -293,6 +294,11 @@ Implements old behavior when using `.findComponent` with `ref` will return DOM w
 
 ➡️ Migration strategy: replace `.findComponent` with `.find` by ref (when https://github.com/vuejs/vue-test-utils-next/pull/1110 will be merged)
 
+### WRAPPER_SET_VALUE_DOES_NOT_TRIGGER_CHANGE (added in v0.0.3)
+
+Implements old behavior when using `.trigger` on DOM Wrapper did not trigger `change` event, so you should trigger it manually (important for lazy v-models)
+
+➡️ Migration strategy: rewrite relevant tests
 
 These compat rules are a work in progress and will be included soon
 
