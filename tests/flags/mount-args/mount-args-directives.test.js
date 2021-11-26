@@ -19,6 +19,11 @@ describeOption(compatFlags.MOUNT_ARGS_DIRECTIVES, () => {
 
     installCompat(VTU, { [compatFlags.MOUNT_ARGS_DIRECTIVES]: compatMode });
     wrapper = VTU.mount(FakeComponent, {
+      global: {
+        config: {
+          warnHandler: () => {},
+        },
+      },
       directives: {
         CustomDir: { created: directiveCreated },
       },

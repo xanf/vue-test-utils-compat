@@ -24,6 +24,11 @@ describeOption(compatFlags.MOUNT_ARGS_COMPONENTS, () => {
 
     installCompat(VTU, { [compatFlags.MOUNT_ARGS_COMPONENTS]: compatMode });
     wrapper = VTU.mount(FakeComponent, {
+      global: {
+        config: {
+          warnHandler: () => {},
+        },
+      },
       components: {
         SomeGlobalComponent: { template: "<div>i-am-global</div>" },
       },
