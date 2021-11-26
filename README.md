@@ -16,10 +16,13 @@ This package provides a compatibility layer, which allows you to run old v1 test
 - ✔️ [Upgrade workflow](#%EF%B8%8F-upgrade-workflow)
 - 🌐 [Global API](#-global-api)
 - 🏁 Compatibility flags
+
   - [EXPORT_CREATE_LOCAL_VUE](#export_create_local_vue)
   - [EXPORT_CREATE_WRAPPER](#export_create_wrapper)
-  - [MOUNT*ARGS_CONTEXT*\*](#mount_args_context_)
-  - [MOUNT_ARGS_LISTENERS](mount_args_listeners)
+  - [MOUNT_ARGS_COMPONENTS](#mount_args_components-added-in-v003)
+  - [MOUNT_ARGS_CONTEXT\_\*](#mount_args_context_)
+  - [MOUNT_ARGS_DIRECTIVES](#mount_args_directives-added-in-v003)
+  - [MOUNT_ARGS_LISTENERS](#mount_args_listeners)
   - [MOUNT_ARGS_MOCKS](#mount_args_mocks)
   - [MOUNT_ARGS_PROVIDE](#mount_args_provide)
   - [MOUNT_ARGS_SCOPED_SLOTS](#mount_args_scoped_slots)
@@ -166,7 +169,13 @@ Adds `createWrapper` to `@vue/test-utils` module
 
 ➡️ Migration strategy: replace `createWrapper` with `new DOMWrapper()`, `new VueWrapper()` which are available as exports in `@vue/test-utils` v2
 
-### MOUNT*ARGS_CONTEXT*\*
+### MOUNT_ARGS_COMPONENTS (added in v0.0.3)
+
+Enable support for `components` field in `mount` args of `@vue/test-utils`
+
+➡️ Migration strategy: Move `components` mount arg to `global.components`
+
+### MOUNT_ARGS_CONTEXT\_\*
 
 Flags:
 
@@ -185,6 +194,12 @@ Enable support for `context` field in `mount` args of `@vue/test-utils` (used to
 - `context.props`, `context.attrs`, and `context.class` go directly to `props`
 - `children` are replaced with `slots.default`
 - `context.on` become corresponding `props`: (`click` → `onClick`, etc.)
+
+### MOUNT_ARGS_DIRECTIVES (added in v0.0.3)
+
+Enable support for `components` field in `mount` args of `@vue/test-utils`
+
+➡️ Migration strategy: Move `directives` mount arg to `global.directives`
 
 ### MOUNT_ARGS_LISTENERS
 

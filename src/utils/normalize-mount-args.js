@@ -114,6 +114,8 @@ export function normalizeMountArgs(args, config, vueH) {
     listeners,
     scopedSlots,
     stubs,
+    components,
+    directives,
 
     // VTU v2 props
     props,
@@ -133,7 +135,12 @@ export function normalizeMountArgs(args, config, vueH) {
       }
     : {};
 
-  const localVueConfig = localVue?.getLocalVueConfig() ?? {};
+  const {
+    plugins,
+    directives: localVueDirectives,
+    components: localVueComponents,
+    mixins,
+  } = localVue?.getLocalVueConfig() ?? {};
   const computedArgs = normalizeConfigOption({
     props: smartMerge(
       config.MOUNT_ARGS_CONTEXT_ATTRS ? context?.attrs : null,
@@ -155,7 +162,10 @@ export function normalizeMountArgs(args, config, vueH) {
           stubs: config.MOUNT_ARGS_STUBS ? normalizeStubs(stubs) : null,
           mocks: config.MOUNT_ARGS_MOCKS ? mocks : null,
           provide: config.MOUNT_ARGS_PROVIDE ? normalizeProvide(provide) : null,
-          ...localVueConfig,
+          plugins,
+          mixins,
+          components: smartMerge(localVueComponents, config.MOUNT_ARGS_COMPONENTS ? components : null),
+          directives: smartMerge(localVueDirectives, config.MOUNT_ARGS_DIRECTIVES ? directives : null),
         },
         global
       )
