@@ -17,7 +17,7 @@ describeOption(compatFlags.MOUNT_ARGS_DIRECTIVES, () => {
       template: "<div v-custom-dir>i-am-root</div>",
     };
 
-    installCompat(VTU, { [compatFlags.MOUNT_ARGS_DIRECTIVES]: compatMode });
+    installCompat(VTU, { [compatFlags.MOUNT_ARGS_DIRECTIVES]: compatMode, [compatFlags.MOUNT_ARGS_STUBS]: compatMode });
     wrapper = VTU.mount(FakeComponent, {
       global: {
         config: {

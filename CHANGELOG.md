@@ -1,3 +1,8 @@
+# 0.0.4
+
+- Altered behavior of MOUNT_ARGS_DIRECTIVES to pass directives also to stubs
+  See https://github.com/vuejs/test-utils/pull/1804 for details
+
 # 0.0.3
 
 - Added flags:

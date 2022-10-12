@@ -1,3 +1,5 @@
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
 function smartMerge(...args) {
   const filteredArgs = args.filter((a) => a != null);
   if (filteredArgs.length === 0) {
@@ -14,8 +16,6 @@ function listenersToProps(listeners) {
 
   return Object.fromEntries(
     Object.keys(listeners).map((key) => {
-      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-
       const fixedKey = `on${capitalize(key)}`;
       return [fixedKey, listeners[key]];
     })
@@ -89,7 +89,7 @@ function contextOnToProps(on) {
   }
   return Object.fromEntries(
     Object.keys(on).map((key) => {
-      const capitalized = key.charAt(0).toUpperCase() + key.slice(1);
+      const capitalized = capitalize(key);
       return [`on${capitalized}`, on[key]];
     })
   );
@@ -159,7 +159,14 @@ export function normalizeMountArgs(args, config, vueH) {
     global: normalizeConfigOption(
       mergeGlobal(
         {
-          stubs: config.MOUNT_ARGS_STUBS ? normalizeStubs(stubs) : null,
+          stubs: config.MOUNT_ARGS_STUBS
+            ? {
+                ...normalizeStubs(stubs),
+                ...(config.MOUNT_ARGS_DIRECTIVES
+                  ? Object.fromEntries(Object.entries(directives).map(([k, v]) => [`v${capitalize(k)}`, v]))
+                  : {}),
+              }
+            : null,
           mocks: config.MOUNT_ARGS_MOCKS ? mocks : null,
           provide: config.MOUNT_ARGS_PROVIDE ? normalizeProvide(provide) : null,
           plugins,
@@ -171,6 +178,5 @@ export function normalizeMountArgs(args, config, vueH) {
       )
     ),
   });
-
   return smartMerge(computedArgs, otherArgsOptions);
 }
