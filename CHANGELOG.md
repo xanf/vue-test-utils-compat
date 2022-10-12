@@ -1,3 +1,7 @@
+# 0.0.5
+
+- Prevent crash if directives is not defined
+
 # 0.0.4
 
 - Altered behavior of MOUNT_ARGS_DIRECTIVES to pass directives also to stubs

@@ -162,7 +162,7 @@ export function normalizeMountArgs(args, config, vueH) {
           stubs: config.MOUNT_ARGS_STUBS
             ? {
                 ...normalizeStubs(stubs),
-                ...(config.MOUNT_ARGS_DIRECTIVES
+                ...(config.MOUNT_ARGS_DIRECTIVES && directives
                   ? Object.fromEntries(Object.entries(directives).map(([k, v]) => [`v${capitalize(k)}`, v]))
                   : {}),
               }
