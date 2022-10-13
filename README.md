@@ -315,7 +315,7 @@ This package monkey-patches `@vue/test-utils` package. Depending on your setup t
 ```js
 import * as VueTestUtils from '@vue/test-utils';
 import { h } from 'vue';
-import { installCompat, fullCompatConfig } from `@vue/test-utils/compat`
+import { installCompat, fullCompatConfig } from 'vue-test-utils-compat';
 
 const PatchedVTU = { ...VueTestUtils };
 installCompat(PatchedVTU, fullCompatConfig, h);
